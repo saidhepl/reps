@@ -48,3 +48,13 @@ Les résultats arrivent dans `scrapes/<date>/`.
 git -C vendor/URS pull origin master
 git add vendor/URS && git commit -m "Met à jour URS"
 ```
+
+## Scraper léger (sans URS)
+
+`scripts/reddit_scrape.py` n'a besoin que de Python et `requests`, et seulement de `CLIENT_ID` / `CLIENT_SECRET` (pseudo et mot de passe facultatifs). Il passe par l'API OAuth officielle, ce qui le fait aussi tourner depuis un serveur ou le cloud, où les endpoints `.json` publics de Reddit sont bloqués.
+
+```bash
+python3 scripts/reddit_scrape.py python --sort top --time week --limit 50 --comments 5
+```
+
+Résultat : `scrapes/<subreddit>-<tri>-<date>.json`.
