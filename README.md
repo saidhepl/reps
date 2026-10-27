@@ -51,7 +51,10 @@ git add vendor/URS && git commit -m "Met à jour URS"
 
 ## Scraper léger (sans URS)
 
-`scripts/reddit_scrape.py` n'a besoin que de Python et `requests`, et seulement de `CLIENT_ID` / `CLIENT_SECRET` (pseudo et mot de passe facultatifs). Il passe par l'API OAuth officielle, ce qui le fait aussi tourner depuis un serveur ou le cloud, où les endpoints `.json` publics de Reddit sont bloqués.
+`scripts/reddit_scrape.py` n'a besoin que de Python et `requests`.
+
+- **Sans identifiants** : il lit les pages `.json` publiques de Reddit. Ça marche depuis une connexion perso, mais Reddit les bloque depuis la plupart des serveurs et du cloud.
+- **Avec `CLIENT_ID` / `CLIENT_SECRET`** (pseudo et mot de passe facultatifs) : il passe par l'API OAuth officielle, qui marche aussi depuis le cloud.
 
 ```bash
 python3 scripts/reddit_scrape.py python --sort top --time week --limit 50 --comments 5
